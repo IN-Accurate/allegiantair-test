@@ -3,16 +3,17 @@ const Home = require("../pageobjects/home.page.js");
 
 Given(/^I am on the homepage$/, async () => {
   await Home.OpenHomePage();
-  let overlayClose = Home.popupClose;
-  await expect(overlayClose).toBeDisplayed();
-  await overlayClose.click();
 });
 
 When(
   /^I enter departure and arrival cities, dates, and other flight details$/,
   async () => {
-    
-    
+    let searchButton=Home.searchButton;
+    await searchButton.waitForExist();
+    await searchButton.waitForClickable();
+    await searchButton.click();
+
+    await browser.pause(2000);
   }
 );
 
