@@ -21,8 +21,6 @@ class Bundles{
         await continueBtn.waitForClickable();
         await continueBtn.click();
 
-
-
     }
 
 
