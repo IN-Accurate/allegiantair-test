@@ -1,4 +1,9 @@
 class HomePage {
+  
+  get cookieClose(){
+    return $('button[class="onetrust-close-btn-handler onetrust-close-btn-ui banner-close-button ot-close-icon"]');
+  }
+  
   get popupClose() {
     return $('button[data-hook="overlay-merchandise_ice-pop_close"]');
   }
@@ -42,8 +47,15 @@ class HomePage {
     return $('button[data-hook="flight-search-submit"]');
   }
   
+
   OpenHomePage = async () => {
     await browser.url("https://www.allegiantair.com/");
+    
+
+    let cookieClose = this.cookieClose;
+    await cookieClose.waitForExist();
+    await cookieClose.waitForClickable();
+    await cookieClose.click();
 
     let overlayClose = this.popupClose;
     await expect(overlayClose).toBeDisplayed();

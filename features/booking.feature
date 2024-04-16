@@ -3,8 +3,7 @@ Feature: Booking flights on allegiant
             
         Given I am on the homepage
         When I enter departure and arrival cities, dates, and other flight details
-        Then I reach the flights page
-        And I can select a flight
+        And I can select a flight on flights page
         Then I can select a bundle
         And I can provide personal details of travelers
         Then I can select seats

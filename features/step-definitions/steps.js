@@ -1,5 +1,7 @@
 const { Given, When, Then } = require("@wdio/cucumber-framework");
 const Home = require("../pageobjects/home.page.js");
+const Flights = require("../pageobjects/flights.page.js");
+const Bundles = require("../pageobjects/bundles.page.js");
 
 Given(/^I am on the homepage$/, async () => {
   await Home.OpenHomePage();
@@ -13,20 +15,18 @@ When(
     await searchButton.waitForClickable();
     await searchButton.click();
 
-    await browser.pause(2000);
+    await browser.pause(1000);
   }
 );
 
-Then(/^I reach the flights page$/, () => {
-  return true;
+When(/^I can select a flight on flights page$/, async() => {
+  await Flights.continueToBundles();
+  await browser.pause(1000);
 });
 
-Then(/^I can select a flight$/, () => {
-  return true;
-});
-
-Then(/^I can select a bundle$/, () => {
-  return true;
+Then(/^I can select a bundle$/, async() => {
+  await Bundles.continueToTravelers();
+  await browser.pause(1000);
 });
 
 Then(/^I can provide personal details of travelers$/, () => {
