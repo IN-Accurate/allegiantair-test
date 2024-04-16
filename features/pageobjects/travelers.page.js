@@ -49,7 +49,10 @@ class Travelers{
     }
 
     setSuffix(j){
-        return $(`//div[contains(text()="${j}")]`);
+        return $(`//div[contains(text(),"${j}")]`);
+    }
+    get continueBtn(){
+        return $('button[data-hook="travelers-page_continue"]')
     }
     continueToSeatPage=async()=>{
         let firstNames=['abc','pqr'];
@@ -64,6 +67,9 @@ class Travelers{
             await this.firstName(i).setValue(firstNames[i]);
             await this.middleName(i).setValue(middleNames[i]);
             await this.lastName(i).setValue(lastNames[i]);
+            await this.suffix(i).click();
+            await this.setSuffix(suffixes[i]).click();
+
             await this.gender(i).click();
 
             await this.month(i).click();
@@ -73,11 +79,9 @@ class Travelers{
             await this.year(i).setValue(dob[2][i]);
             await this.email(i).setValue(emails[i]);
             await this.phoneNumber(i).setValue(phoneNumbers[i]);
-            await this.suffix(i).click();
-            await this.setSuffix(suffixes[i]).click();
-            await browser.pause(2000);
     }
-
+    await this.continueBtn.click();
+    await browser.pause(4000);
 
     }
 
