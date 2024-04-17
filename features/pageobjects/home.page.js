@@ -37,7 +37,7 @@ class HomePage {
     let currDate = new Date();
     console.log(currDate);
     let currDay=currDate.toISOString().slice(8,10);
-    let currDayInt=30;
+    let currDayInt=parseInt(currDay);
     console.log(currDay);
     while(await  $('[data-hook="flight-search-date-picker_calendar-'+i+'_select-day-'+currDayInt+'"]').isEnabled()==false){
       currDayInt++;
