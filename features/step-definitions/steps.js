@@ -5,6 +5,7 @@ const Bundles = require("../pageobjects/bundles.page.js");
 const Travelers = require("../pageobjects/travelers.page.js");
 
 Given(/^I am on the homepage$/, async () => {
+  await browser.maximizeWindow()
   await Home.OpenHomePage();
 });
 

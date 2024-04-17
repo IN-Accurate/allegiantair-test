@@ -31,8 +31,25 @@ class HomePage {
     return $('button[data-hook="flight-search-date-picker_expand-start-date"]');
   }
 
-  get departureDate(){
-    return $('button[data-hook="flight-search-date-picker_calendar-0_select-day-26"]');
+  departureDate =async()=>{
+
+    let i=0;
+    let currDate = new Date();
+    console.log(currDate);
+    let currDay=currDate.toISOString().slice(8,10);
+    let currDayInt=30;
+    console.log(currDay);
+    while(await  $('[data-hook="flight-search-date-picker_calendar-'+i+'_select-day-'+currDayInt+'"]').isEnabled()==false){
+      currDayInt++;
+     
+        if(currDayInt>31){
+          currDayInt=currDayInt%31;
+          i++;
+        }
+    }
+
+    console.log(currDayInt)
+    return  $('[data-hook="flight-search-date-picker_calendar-'+i+'_select-day-'+currDayInt+'"]');
   }
 
   get openTravelerSelect(){
@@ -69,13 +86,12 @@ class HomePage {
     await this.toCity.click();
     await this.selectToCity.click();
 
-    await this.openCalendar.waitForExist();
     await this.openCalendar.waitForClickable();
     await this.openCalendar.click();
 
-    await this.departureDate.waitForExist();
-    await this.departureDate.waitForClickable();
-    await this.departureDate.click();
+    let departureBtn = await this.departureDate();
+    await departureBtn.waitForClickable();
+    await departureBtn.click();
 
     await this.openTravelerSelect.click();
     await this.adultsIncrement.click()
