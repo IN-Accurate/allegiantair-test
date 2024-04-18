@@ -96,6 +96,7 @@ class HomePage {
     await this.openTravelerSelect.click();
     await this.adultsIncrement.click()
     await this.openTravelerSelect.click();
+    
 
   };
 }
