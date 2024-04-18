@@ -4,6 +4,8 @@ const Flights = require("../pageobjects/flights.page.js");
 const Bundles = require("../pageobjects/bundles.page.js");
 const Travelers = require("../pageobjects/travelers.page.js");
 const Seats = require("../pageobjects/seats.page.js");
+const Bags = require("../pageobjects/bags.page.js");
+// const Hotels = require("../pageobjects/hotels.page.js");
 
 Given(/^I am on the homepage$/, async () => {
   await browser.maximizeWindow()
@@ -18,36 +20,37 @@ When(
     await searchButton.waitForClickable();
     await searchButton.click();
 
-    await browser.pause(2500);
   }
 );
 
 When(/^I can select a flight on flights page$/, async() => {
+  await browser.pause(6000);
   await Flights.continueToBundles();
-  await browser.pause(2500);
 });
 
 Then(/^I can select a bundle$/, async() => {
+  await browser.pause(6000);
   await Bundles.continueToTravelers();
-  await browser.pause(2500);
 });
 
 Then(/^I can provide personal details of travelers$/, async() => {
+  await browser.pause(6000);
   await Travelers.continueToSeatPage();
-  await browser.pause(2500);
 });
 
 Then(/^I can select seats$/, async() => {
+  await browser.pause(6000);
   await Seats.continueToBags();
-  await browser.pause(2500);
 });
 
-Then(/^I can select any bags and extras needed$/, () => {
-  return true;
+Then(/^I can select any bags and extras needed$/, async() => {
+  await browser.pause(6000);
+  await Bags.continueToHotels();
 });
 
-Then(/^I can optionally select a hotel$/, () => {
-  return true;
+Then(/^I can optionally select a hotel$/, async() => {
+  await browser.pause(6000);
+  // await Hotels.continueToCars();
 });
 
 Then(/^I can optionally select a rental car$/, () => {

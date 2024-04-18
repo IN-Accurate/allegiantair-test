@@ -81,7 +81,6 @@ class Travelers{
             await this.phoneNumber(i).setValue(phoneNumbers[i]);
     }
     await this.continueBtn.click();
-    await browser.pause(4000);
 
     }
 

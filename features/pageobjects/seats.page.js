@@ -12,13 +12,10 @@ class Seats {
     let travelerCount = 0;
 
     for (let row of seatRows) {
-
       let seatList = await row.$$("li");
 
       for (let li of seatList) {
-        
-        if(travelerCount==2)
-        break;
+        if (travelerCount == 2) break;
 
         let button = await li.$("button");
         if (button) {
@@ -29,30 +26,29 @@ class Seats {
               let dataHook = await span.getAttribute("data-hook");
               if (dataHook && !dataHook.includes("taken")) {
                 travelerCount++;
-                console.log(travelerCount)
+                console.log(travelerCount);
                 await button.click();
               }
             }
           }
         }
+        if (travelerCount == 2) break;
       }
-      
-      if(travelerCount==2)
-      break;
-  }
-}
 
-get continueToBagsBtn(){
+      if (travelerCount == 2) break;
+    }
+    if (travelerCount == 2) return true;
+  };
+
+  get continueToBagsBtn() {
     return $('button[data-hook="seats-page_continue"]');
-}
+  }
   continueToBags = async () => {
-      await this.availableSeat();
-      let continueToBagsBtn= await this.continueToBagsBtn;
-      
+    if ((await this.availableSeat()) == true) {
+      let continueToBagsBtn = await this.continueToBagsBtn;
       await continueToBagsBtn.waitForClickable();
       await continueToBagsBtn.click();
-      await browser.pause(5500);
-    
+    }
   };
 }
 
