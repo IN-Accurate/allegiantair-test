@@ -1,7 +1,7 @@
 class Hotels{
 
         get roomsAndRatesBtn(){
-            return $('a.HotelCard__HotelCardButton-isxhr6-2 bSCHyz');
+            return $('//a[starts-with(@data-hook,"hotels-page-hotel-card_")]');
     }
 
     get confirmRoom(){

@@ -5,7 +5,7 @@ const Bundles = require("../pageobjects/bundles.page.js");
 const Travelers = require("../pageobjects/travelers.page.js");
 const Seats = require("../pageobjects/seats.page.js");
 const Bags = require("../pageobjects/bags.page.js");
-// const Hotels = require("../pageobjects/hotels.page.js");
+const Hotels = require("../pageobjects/hotels.page.js");
 
 Given(/^I am on the homepage$/, async () => {
   await browser.maximizeWindow()
@@ -24,33 +24,33 @@ When(
 );
 
 When(/^I can select a flight on flights page$/, async() => {
-  await browser.pause(6000);
+  await browser.pause(8000);
   await Flights.continueToBundles();
 });
 
 Then(/^I can select a bundle$/, async() => {
-  await browser.pause(6000);
+  await browser.pause(8000);
   await Bundles.continueToTravelers();
 });
 
 Then(/^I can provide personal details of travelers$/, async() => {
-  await browser.pause(6000);
+  await browser.pause(8000);
   await Travelers.continueToSeatPage();
 });
 
 Then(/^I can select seats$/, async() => {
-  await browser.pause(6000);
+  await browser.pause(8000);
   await Seats.continueToBags();
 });
 
 Then(/^I can select any bags and extras needed$/, async() => {
-  await browser.pause(6000);
+  await browser.pause(8000);
   await Bags.continueToHotels();
 });
 
 Then(/^I can optionally select a hotel$/, async() => {
-  await browser.pause(6000);
-  // await Hotels.continueToCars();
+  await browser.pause(8000);
+  await Hotels.continueToCars();
 });
 
 Then(/^I can optionally select a rental car$/, () => {
