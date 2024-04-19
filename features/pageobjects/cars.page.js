@@ -1,15 +1,19 @@
 class Cars{
 
 
-    get continueToPayment(){
-        return $('button[data-hook="cars-page_continue"]');
+    get selectFirstCar(){
+        return $$('//button[contains(.,\'$\')]')[4];
     }
+    // get continueToPayment(){
+    //     return $('button[data-hook="cars-page_continue"]');
+    // }
 
     continueToPayment=async()=>{
 
-        let continueToPaymentBtn = await this.continueToPayment;
-        await continueToPaymentBtn.waitForClickable();
-        await continueToPaymentBtn.click();
+        let selectFirstCarBtn = await this.selectFirstCar;
+        await selectFirstCarBtn.click();
+        // let continueToPaymentBtn = await this.continueToPayment;
+        // await continueToPaymentBtn.click();
     }
 
 }
