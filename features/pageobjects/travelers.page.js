@@ -1,3 +1,8 @@
+const { config } = require('dotenv');
+const { resolve } = require('path');
+
+config({ path: resolve(__dirname, '.env') });
+
 class Travelers{
 
      firstName(i){
@@ -55,15 +60,18 @@ class Travelers{
         return $('button[data-hook="travelers-page_continue"]')
     }
     continueToSeatPage=async()=>{
-        let firstNames=['abc','pqr'];
-        let lastNames=['xyz','jkl'];
-        let middleNames=['def','mno'];
-        let dob=[['January','March'],[3,2],[1999,1998]];
-        let emails=['abcpqr@gmail.com','xyzjkl@gmail.com'];
-        let phoneNumbers=['418-543-8090','587-530-2271'];
-        let suffixes =['Sr','Jr']
+      
+        const firstNames = process.env.FIRSTNAMES.split(',');
+        const lastNames = process.env.LASTNAMES.split(',');
+        const middleNames = process.env.MIDDLENAMES.split(',');
+        const suffixes = process.env.SUFFIXES.split(',');
+        const dobMonths = process.env.DOB_MONTHS.split(',');
+        const dobDays = process.env.DOB_DAYS.split(',');
+        const dobYears = process.env.DOB_YEARS.split(',');
+        const emails = process.env.EMAILS.split(',');
+        const phones = process.env.PHONES.split(',');
 
-        for(let i=0;i<2;i++){
+        for(let i=0;i<firstNames.length;i++){
             await this.firstName(i).setValue(firstNames[i]);
             await this.middleName(i).setValue(middleNames[i]);
             await this.lastName(i).setValue(lastNames[i]);
@@ -73,13 +81,14 @@ class Travelers{
             await this.gender(i).click();
 
             await this.month(i).click();
-            await this.setMonth(i,dob[0]).click();
+            await this.setMonth(i,dobMonths).click();
             await this.day(i).click();
-            await this.setDay(i,dob[1]).click();
-            await this.year(i).setValue(dob[2][i]);
+            await this.setDay(i, dobDays).click();
+            await this.year(i).setValue( dobYears[i]);
             await this.email(i).setValue(emails[i]);
-            await this.phoneNumber(i).setValue(phoneNumbers[i]);
+            await this.phoneNumber(i).setValue(phones[i]);
     }
+    await browser.pause(2000);
     await this.continueBtn.click();
 
     }

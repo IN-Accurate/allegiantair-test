@@ -8,9 +8,9 @@ class Flights{
 
     continueToBundles=async()=>{
 
-        let continueBtn = this.continueBtn;
+        
+        let continueBtn = await this.continueBtn;
 
-        await continueBtn.waitForExist();
         await continueBtn.waitForClickable();
         await continueBtn.click();
 

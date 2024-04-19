@@ -36,7 +36,7 @@ class HomePage {
     let i=0;
     let currDate = new Date();
     console.log(currDate);
-    let currDay=currDate.toISOString().slice(8,10);
+    let currDay=currDate.toISOString().slice(8,10); 
     let currDayInt=parseInt(currDay)+2;
     console.log(currDay);
     while(await  $('[data-hook="flight-search-date-picker_calendar-'+i+'_select-day-'+currDayInt+'"]').isEnabled()==false){
@@ -69,12 +69,12 @@ class HomePage {
     await browser.url("https://www.allegiantair.com/");
     
 
-    let cookieClose = this.cookieClose;
+    let cookieClose = await this.cookieClose;
     await cookieClose.waitForExist();
     await cookieClose.waitForClickable();
     await cookieClose.click();
 
-    let overlayClose = this.popupClose;
+    let overlayClose = await this.popupClose;
     await expect(overlayClose).toBeDisplayed();
     await overlayClose.click();
     

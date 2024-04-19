@@ -1,7 +1,7 @@
 class Bundles{
 
     get tierTwoSelector(){
-        return $('button[data-hook="select-tier-2"]');
+        return $('button[data-hook="select-tier-2"]');  
     }
 
     get continueBtn(){
@@ -10,13 +10,13 @@ class Bundles{
 
     continueToTravelers=async()=>{
 
-        let tierTwoButton = this.tierTwoSelector;
+        let tierTwoButton = await this.tierTwoSelector;
         await tierTwoButton.waitForExist();
         await tierTwoButton.waitForClickable();
         await tierTwoButton.click();
 
         
-        let continueBtn = this.continueBtn;
+        let continueBtn = await this.continueBtn;
         await continueBtn.waitForExist();
         await continueBtn.waitForClickable();
         await continueBtn.click();
